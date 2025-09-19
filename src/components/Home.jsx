@@ -4,7 +4,6 @@ const Home = () => {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
-        // Decode JWT token to get user info (simple implementation)
         const token = localStorage.getItem('token');
         if (token) {
             try {
@@ -17,60 +16,65 @@ const Home = () => {
     }, []);
 
     return (
-        <div className="home-container">
-            <h1>🎉 Welcome to Your Dashboard!</h1>
-            <p>
-                You have successfully logged into the authentication portal. 
-                This is a protected route that only authenticated users can access.
-            </p>
-            {user && (
-                <div style={{
-                    background: 'rgba(255, 255, 255, 0.1)',
-                    padding: '2rem',
-                    borderRadius: '15px',
-                    marginTop: '2rem',
-                    backdropFilter: 'blur(10px)'
-                }}>
-                    <h3>👤 User Information</h3>
-                    <p>User ID: {user.id}</p>
-                    <p>Status: ✅ Authenticated</p>
+        <div className="dashboard">
+            <div className="dashboard-header">
+                <h1 className="dashboard-title">Welcome to Your Dashboard</h1>
+                <p className="dashboard-subtitle">
+                    Manage your account and access all features from your personalized dashboard.
+                    Your security and privacy are our top priorities.
+                </p>
+            </div>
+
+            <div className="stats-grid">
+                <div className="stat-card">
+                    <div className="stat-icon">🔐</div>
+                    <h3 className="stat-title">Secure Authentication</h3>
+                    <p className="stat-description">
+                        Your account is protected with industry-standard JWT authentication 
+                        and encrypted password storage.
+                    </p>
                 </div>
-            )}
-            <div style={{
-                marginTop: '3rem',
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-                gap: '2rem',
-                maxWidth: '800px'
-            }}>
-                <div style={{
-                    background: 'rgba(255, 255, 255, 0.1)',
-                    padding: '2rem',
-                    borderRadius: '15px',
-                    backdropFilter: 'blur(10px)'
-                }}>
-                    <h3>🔐 Secure</h3>
-                    <p>Your session is protected with JWT authentication</p>
+                <div className="stat-card">
+                    <div className="stat-icon">⚡</div>
+                    <h3 className="stat-title">High Performance</h3>
+                    <p className="stat-description">
+                        Built with React and Node.js for lightning-fast performance 
+                        and seamless user experience.
+                    </p>
                 </div>
-                <div style={{
-                    background: 'rgba(255, 255, 255, 0.1)',
-                    padding: '2rem',
-                    borderRadius: '15px',
-                    backdropFilter: 'blur(10px)'
-                }}>
-                    <h3>⚡ Fast</h3>
-                    <p>Built with React and modern web technologies</p>
-                </div>
-                <div style={{
-                    background: 'rgba(255, 255, 255, 0.1)',
-                    padding: '2rem',
-                    borderRadius: '15px',
-                    backdropFilter: 'blur(10px)'
-                }}>
-                    <h3>🚀 Modern</h3>
-                    <p>Full-stack application with Node.js backend</p>
+                <div className="stat-card">
+                    <div className="stat-icon">🛡️</div>
+                    <h3 className="stat-title">Data Protection</h3>
+                    <p className="stat-description">
+                        Your personal information is encrypted and stored securely 
+                        with MongoDB and follows best security practices.
+                    </p>
                 </div>
             </div>
+
+            {user && (
+                <div className="user-info">
+                    <h3>Account Information</h3>
+                    <div className="user-detail">
+                        <span className="user-label">User ID</span>
+                        <span className="user-value">{user.id}</span>
+                    </div>
+                    <div className="user-detail">
+                        <span className="user-label">Account Status</span>
+                        <span className="status-badge">
+                            ✓ Active & Verified
+                        </span>
+                    </div>
+                    <div className="user-detail">
+                        <span className="user-label">Session</span>
+                        <span className="user-value">Authenticated</span>
+                    </div>
+                    <div className="user-detail">
+                        <span className="user-label">Security Level</span>
+                        <span className="user-value">High</span>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

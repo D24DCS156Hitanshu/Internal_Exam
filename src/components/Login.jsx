@@ -31,36 +31,60 @@ const Login = () => {
     };
 
     return (
-        <div className="form-container">
-            <h2>Welcome Back</h2>
-            {error && <div style={{color: 'red', textAlign: 'center', marginBottom: '1rem'}}>{error}</div>}
-            <form onSubmit={onSubmit}>
-                <input
-                    type="email"
-                    placeholder="📧 Email Address"
-                    name="email"
-                    value={email}
-                    onChange={onChange}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="🔒 Password"
-                    name="password"
-                    value={password}
-                    onChange={onChange}
-                    minLength="6"
-                    required
-                />
-                <input 
-                    type="submit" 
-                    value={loading ? "Signing In..." : "Sign In"} 
-                    disabled={loading}
-                />
-            </form>
-            <p style={{textAlign: 'center', marginTop: '1rem'}}>
-                Don't have an account? <Link to="/register" style={{color: '#667eea', fontWeight: '600'}}>Create Account</Link>
-            </p>
+        <div className="card auth-card">
+            <div className="card-header">
+                <h2 className="card-title">Welcome Back</h2>
+                <p className="card-subtitle">Sign in to your account to continue</p>
+            </div>
+            <div className="card-body">
+                {error && (
+                    <div className="alert alert-error">
+                        {error}
+                    </div>
+                )}
+                <form onSubmit={onSubmit} className="form">
+                    <div className="form-group">
+                        <label className="form-label">Email Address</label>
+                        <input
+                            type="email"
+                            className="form-input"
+                            placeholder="Enter your email"
+                            name="email"
+                            value={email}
+                            onChange={onChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="form-label">Password</label>
+                        <input
+                            type="password"
+                            className="form-input"
+                            placeholder="Enter your password"
+                            name="password"
+                            value={password}
+                            onChange={onChange}
+                            minLength="6"
+                            required
+                        />
+                    </div>
+                    <button 
+                        type="submit" 
+                        className="btn btn-primary"
+                        disabled={loading}
+                    >
+                        {loading ? "Signing In..." : "Sign In"}
+                    </button>
+                </form>
+                <div className="text-center mt-4">
+                    <p className="text-sm">
+                        Don't have an account?{' '}
+                        <Link to="/register" className="link">
+                            Create one here
+                        </Link>
+                    </p>
+                </div>
+            </div>
         </div>
     );
 };

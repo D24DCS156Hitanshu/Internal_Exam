@@ -17,30 +17,43 @@ function App() {
     return (
         <Router>
             <div className="App">
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to="/">🏠 Home</Link>
-                        </li>
-                        <li>
-                            {token ? (
-                                <button onClick={handleLogout}>🚪 Logout</button>
-                            ) : (
-                                <>
-                                    <Link to="/register">📝 Register</Link>
-                                    <Link to="/login">🔐 Login</Link>
-                                </>
-                            )}
-                        </li>
-                    </ul>
-                </nav>
-                <div className="main-content">
+                <header className="header">
+                    <div className="nav-container">
+                        <Link to="/" className="logo">
+                            AuthPortal
+                        </Link>
+                        <nav>
+                            <ul className="nav-links">
+                                <li>
+                                    <Link to="/" className="nav-link">Dashboard</Link>
+                                </li>
+                                {token ? (
+                                    <li>
+                                        <button onClick={handleLogout} className="logout-btn">
+                                            Sign Out
+                                        </button>
+                                    </li>
+                                ) : (
+                                    <>
+                                        <li>
+                                            <Link to="/login" className="nav-link">Sign In</Link>
+                                        </li>
+                                        <li>
+                                            <Link to="/register" className="nav-link">Sign Up</Link>
+                                        </li>
+                                    </>
+                                )}
+                            </ul>
+                        </nav>
+                    </div>
+                </header>
+                <main className="main-content">
                     <Routes>
                         <Route path="/" element={<PrivateRoute><Home /></PrivateRoute>} />
                         <Route path="/register" element={<Register />} />
                         <Route path="/login" element={<Login />} />
                     </Routes>
-                </div>
+                </main>
             </div>
         </Router>
     );

@@ -32,44 +32,72 @@ const Register = () => {
     };
 
     return (
-        <div className="form-container">
-            <h2>Create Account</h2>
-            {error && <div style={{color: 'red', textAlign: 'center', marginBottom: '1rem'}}>{error}</div>}
-            <form onSubmit={onSubmit}>
-                <input
-                    type="text"
-                    placeholder="👤 Full Name"
-                    name="name"
-                    value={name}
-                    onChange={onChange}
-                    required
-                />
-                <input
-                    type="email"
-                    placeholder="📧 Email Address"
-                    name="email"
-                    value={email}
-                    onChange={onChange}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="🔒 Password (min 6 characters)"
-                    name="password"
-                    value={password}
-                    onChange={onChange}
-                    minLength="6"
-                    required
-                />
-                <input 
-                    type="submit" 
-                    value={loading ? "Creating Account..." : "Create Account"} 
-                    disabled={loading}
-                />
-            </form>
-            <p style={{textAlign: 'center', marginTop: '1rem'}}>
-                Already have an account? <Link to="/login" style={{color: '#667eea', fontWeight: '600'}}>Sign In</Link>
-            </p>
+        <div className="card auth-card">
+            <div className="card-header">
+                <h2 className="card-title">Create Account</h2>
+                <p className="card-subtitle">Join us today and get started</p>
+            </div>
+            <div className="card-body">
+                {error && (
+                    <div className="alert alert-error">
+                        {error}
+                    </div>
+                )}
+                <form onSubmit={onSubmit} className="form">
+                    <div className="form-group">
+                        <label className="form-label">Full Name</label>
+                        <input
+                            type="text"
+                            className="form-input"
+                            placeholder="Enter your full name"
+                            name="name"
+                            value={name}
+                            onChange={onChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="form-label">Email Address</label>
+                        <input
+                            type="email"
+                            className="form-input"
+                            placeholder="Enter your email"
+                            name="email"
+                            value={email}
+                            onChange={onChange}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label className="form-label">Password</label>
+                        <input
+                            type="password"
+                            className="form-input"
+                            placeholder="Create a password (min 6 characters)"
+                            name="password"
+                            value={password}
+                            onChange={onChange}
+                            minLength="6"
+                            required
+                        />
+                    </div>
+                    <button 
+                        type="submit" 
+                        className="btn btn-primary"
+                        disabled={loading}
+                    >
+                        {loading ? "Creating Account..." : "Create Account"}
+                    </button>
+                </form>
+                <div className="text-center mt-4">
+                    <p className="text-sm">
+                        Already have an account?{' '}
+                        <Link to="/login" className="link">
+                            Sign in here
+                        </Link>
+                    </p>
+                </div>
+            </div>
         </div>
     );
 };
